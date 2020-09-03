@@ -11,7 +11,7 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
+		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
@@ -166,6 +166,27 @@
 					"id": -1,
 					"name": "pages/expertAnswer/main",
 					"pathName": "pages/expertAnswer/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/expeortDetail/main",
+					"pathName": "pages/expeortDetail/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exportDetail/main",
+					"pathName": "pages/exportDetail/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/repassword/main",
+					"pathName": "pages/repassword/main",
 					"scene": null
 				}
 			]

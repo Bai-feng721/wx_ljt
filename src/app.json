@@ -6,17 +6,19 @@
     "pages/reg/main",
     "pages/answer/main",
     "pages/video/main",
+    "pages/videoDetail/main",
     "pages/my/main",
     "pages/myAnswer/main",
     "pages/detail/main",
     "pages/agraction/main",
     "pages/fruit/main",
-    "pages/fruitDetail/main",
     "pages/tech/main",
     "pages/material/main",
     "pages/expertAnswer/main",
+    "pages/exportDetail/main",
     "pages/answerDetail/main",
-    "pages/repassword/main"
+    "pages/repassword/main",
+    "pages/onlineAnswer/main"
 
   ],
   "window": {
@@ -38,7 +40,7 @@
         "iconPath": "static/tabs/icon_index.png",
         "selectedIconPath": "static/tabs/icon_index_h.png"
       }, {
-        "text": "视频",
+        "text": "培训",
         "pagePath": "pages/video/main",
         "iconPath": "static/tabs/icon_shipin.png",
         "selectedIconPath": "static/tabs/icon_shipin_h.png"

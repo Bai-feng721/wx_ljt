@@ -5,16 +5,16 @@
         <img src="../../static/images/user.jpg" alt="">
       </div>
       <div class="mess">
-        <h1 class="content">13112345678</h1>
-        <p>2020-7-6</p>
+        <h1 class="content">{{name}}</h1>
+        <p>{{newtime}}</p>
       </div>
     </div>
     <div class="buttom">
-      <h1>果树长虫子怎么办树长虫子怎么办树</h1>
+      <h1>{{newtitle}}</h1>
       <div class="main">
-        <img src="../../static/images/pic_sp.png" alt="">
-        <img src="../../static/images/pic_sp.png" alt="">
-        <img src="../../static/images/pic_sp.png" alt="">
+        <img :src="imgurl1" alt="">
+        <img :src="imgurl2" alt="">
+        <img :src="imgurl3" alt="">
       </div>
       <div class="mess1">
         <img src="../../static/images/mess.png" alt="">
@@ -31,7 +31,15 @@
       data:{
 
       },
-      imgurl:{
+      imgurl1:{
+        type:String,
+        default:null
+      },
+      imgurl2:{
+        type:String,
+        default:null
+      },
+      imgurl3:{
         type:String,
         default:null
       },
@@ -39,7 +47,7 @@
         type:String,
         default:null
       },
-      issued:{
+      name:{
         type:String,
         default:null
       },
@@ -47,7 +55,7 @@
         type:String,
         default:null
       },
-      createdBy: {
+      readcount: {
         type: String,
         default: null
       },

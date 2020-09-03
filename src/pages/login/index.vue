@@ -24,10 +24,7 @@
     <div class="foot">
       <div class="finish" @click="login">登 录</div>
     </div>
-    <div class="footer">
-      <div class="reg " @click="toreg">注册</div>
-      <div class="perfect" @click="forget">忘记密码?</div>
-    </div>
+
   </div>
 </template>
 
@@ -40,11 +37,14 @@ export default {
        phone:'',
        password:'',
        id:"",
+       lTime: "", // 最后一次登录的时间
+       ctTime: "", //当前时间
+       // tOut: 10*1000,   //超时时间30min
     }
   },
   mounted () {
     this.id=this.$root.$mp.query.id
-    console.log("1111",this.id)
+    setInterval(this.tTime, 4*60*1000);
   },
   methods:{
     checkInp(value, reg,msg) {
@@ -55,6 +55,7 @@ export default {
             })
     		}
     	},
+
     login(){
       let data = {
         "account": this.phone,
@@ -67,6 +68,7 @@ export default {
           }).then(
            res=>{
              if(res.code == 200) {
+              this.lTime = new Date().getTime();
               wx.showToast({
                 title: "登录成功",
                 duration: 2000,
@@ -77,10 +79,17 @@ export default {
                 "token",res.data.token
               )
               setTimeout(()=>{
-                wx.navigateTo({
-                  url:'../expertAnswer/main?id='+this.id
-                 })
-              })
+                if(this.id){
+                  wx.navigateTo({
+                    url:'../expertAnswer/main?id='+this.id
+                   })
+                }else{
+                  wx.switchTab({
+                    url:'../my/main'
+                   })
+                }
+              },2000)
+
 
              }else{
                wx.showToast({
@@ -97,17 +106,32 @@ export default {
         })
       }
     },
+    tTime() {
+      console.log(111)
+      this.ctTime = new Date().getTime();
+      if (this.ctTime - this.lTime > 27*60*1000) {
+        if (wx.getStorageSync('token')) {
+          // 退出登录
+          wx.showToast({
+            title:'登录超时',
+            icon:'none',
+            duration:2000
+          })
+          wx.removeStorageSync('token')
+          setTimeout(()=>{
+            wx.navigateTo({
+              url:'../login/main'
+            })
+          },3000)
+        }
+      }
+    },
     toreg(){
       mpvue.navigateTo({
         url:'../reg/main'
       })
     },
 
-    forget(){
-      mpvue.navigateTo({
-        url:''
-      })
-    }
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div class="container">
     <un-cell
       v-for="(item,index) in materList"
-      :key='item.index'
+      :key='index'
       :id='item.id'
       :newtitle="item.title"
       :time="$parseTime(item.operate_time,'{y}-{m}-{d}')"
@@ -24,27 +24,42 @@ export default {
   data () {
     return {
       materList:[],
+      listtotal:'',
       time:[],
       read:[],
       imgurl:[],
+      pageNum:1,
       url:process.env.VUE_IMAGES
     }
   },
   mounted() {
       this.search()
     },
+    onReachBottom(){
+      console.log('上拉')
+     if(this.pageNum<=this.listtotal){
+        this.search()
+     }
+    },
   methods:{
     search(){
       let that = this
+      let data = {
+      	"header_id": "1277804936800763904",
+      	"is_enclosure": 0,
+      	"is_out": 0
+      }
       this.$http.post({
-          url:"/hContent/list_content/1277804936800763904",
-
+          url:"/hContent/list?pageSize=10&pageNum="+that.pageNum++,
+          data
        }).then(res =>{
-        that.materList=res.data
-
+        res.rows.map(item=>{
+          that.materList.push(item)
+        })
+         this.listtotal=Math.ceil(res.total/10)
       });
     },
-    
+
   }
 }
 </script>

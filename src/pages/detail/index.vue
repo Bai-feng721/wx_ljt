@@ -29,7 +29,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$root.$mp.query.id)
     this.getData(this.$root.$mp.query.id);
   },
   methods: {

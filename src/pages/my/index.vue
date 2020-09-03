@@ -1,15 +1,23 @@
 <template>
   <div class="container">
-    <div class="top">
+    <div class="top" @click="gologin">
       <img class="newimg" src="../../../static/images/user.jpg"></img>
-      <div class="mess">
-        <h1 class="content">13112345678</h1>
-        <p>普通用户</p>
+      <div class="mess" >
+        <h1 class="content" v-if="phone==''?true:false">未登录</h1>
+        <h1 class="content" v-else>{{phone}}</h1>
       </div>
     </div>
     <div class="mylist" @click="goMyAnswer">
       <img class="icon_1" src="../../../static/images/anwer.png"></img>
       <h1 class="title_1">我的提问</h1>
+    </div>
+    <div class="mylist" @click="goreg">
+      <img class="icon_1" src="../../../static/images/regist.png"></img>
+      <h1 class="title_1">用户注册</h1>
+    </div>
+    <div class="mylist" @click="gorepass">
+      <img class="icon_1" src="../../../static/images/repass.png"></img>
+      <h1 class="title_1">修改密码</h1>
     </div>
     <div class="mylist" @click="outlogin">
       <img class="icon_1" src="../../../static/images/out.png"></img>
@@ -25,31 +33,59 @@ export default {
   },
   data () {
     return {
-
+      phone:'',
     }
+  },
+  onShow() {
+    this.getinfo()
   },
 
   methods:{
-   //查询sn码
-    search(){
-      this.$http.post({
-          url:"/",
-          data:{
+    gologin(){
+      wx.navigateTo({
+        url:'../login/main'
+      })
+    },
+    goreg(){
+      wx.navigateTo({
+        url:'../reg/main'
+      })
+    },
+    gorepass(){
+      if(wx.getStorageSync('token')){
+        wx.navigateTo({
+          url:'../repassword/main'
+        })
+      }else{
+        wx.showToast({
+          title:'请登录后修改！',
+          icon:"none"
+        })
 
-          },
+      }
+
+    },
+    getinfo(){
+      this.phone=''
+      this.$http.get({
+          url:"/frontUser/userInfo"
        }).then(res =>{
-        if(res.code==200){
-
-        }else{
-
-        }
-
+          this.phone = res.data.operate
       });
     },
     goMyAnswer(){
-      wx.navigateTo({
-        url:'../myAnswer/main'
-      })
+      if (wx.getStorageSync('token')) {
+          wx.navigateTo({
+            url:'../myAnswer/main'
+          })
+      } else {
+      				 wx.showToast({
+      				   title: '请登录后查看！',
+      				   icon:'none',
+      				 });
+
+      }
+
     },
     outlogin(){
       this.$http.post({
@@ -57,19 +93,22 @@ export default {
 
        }).then(res =>{
         if(res.code==200){
+          wx.showToast({
+            title:'退出成功！',
+            icon:'none'
+          })
+           wx.removeStorageSync('token')
           setTimeout(()=>{
-            wx.showToast({
-              title:'退出成功！',
-              icon:'none'
-            })
-            mpvue.navigateTo({
+            mpvue.switchTab({
               url:'../index/main'
             })
           },2000)
-        }else{
-
+        }else if(res.code==403){
+          wx.showToast({
+            title:'您还没有登录！',
+            icon:'none'
+          })
         }
-
       });
     }
   }
@@ -96,29 +135,22 @@ export default {
   .mess{
     margin-left: 30rpx;
   }
-  .mess p{
-    font-size: 20rpx;
-    width: 90rpx;
-    height: 40rpx;
-    color: #FFFFFF;
-    background-color: #00923f;
-    text-align: center;
-    line-height: 40rpx;
-    border-radius:  30rpx
+  .mess h1{
+    font-size: 32rpx;
   }
   .mylist{
     width: 100%;
-    height: 80rpx;
+    height: 100rpx;
     display: flex;
     align-items: center;
     border-bottom: 2px solid #F2F2F2;
   }
   .icon_1{
-    width: 30rpx;
-    height: 30rpx;
+    width: 50rpx;
+    height: 50rpx;
     margin:0 30rpx 0 40rpx;
   }
   .title_1{
-    font-size: 30rpx;
+    font-size: 34rpx;
   }
 </style>

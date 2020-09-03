@@ -5,7 +5,6 @@ import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTr
 
 Vue.prototype.$http = fly;
 Vue.prototype.$parseTime = parseTime;
-
 Vue.config.productionTip = false
 App.mpType = 'app'
 

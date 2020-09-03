@@ -3,14 +3,14 @@
     <div class="main">
       <van-tabs :active="active" swipeable color="#12be5c" @change="onChange">
         <van-tab
-          v-for="item in fruit"
-          :key="item.index"
+          v-for="(item,index) in fruit"
+          :key="index"
           :id="item.id"
           :title="item.name">
           <div class="content">
             <un-cell
               v-for="(item,index1) in fruitList"
-              :key="item.index1"
+              :key="index1"
               :id="item.id"
               :time="$parseTime(item.operate_time,'{y}-{m}-{d}')"
               :newtitle="item.title"
@@ -48,14 +48,12 @@ export default {
   },
   methods:{
      onChange(event) {
-        console.log(event.mp.detail.name)
         this.index = event.mp.detail.name
         this.$http.get({
             url:"/hContent/list_content/"+this.fruit[this.index].id,
 
          }).then(res =>{
           this.fruitList=res.data
-          console.log(res.data)
         });
       },
     search(){
@@ -86,6 +84,6 @@ export default {
    height: 100%;
  }
  .content{
-   /* width: 100%; */
+   min-height: 900rpx;
  }
 </style>

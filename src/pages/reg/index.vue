@@ -33,6 +33,7 @@
       <van-field
           :value="inputCode "
           center
+          required
           clearable
           label="验证码"
           placeholder="请输入验证码"
@@ -135,6 +136,7 @@ export default {
       },
      //注册
       reg(){
+        if(this.phone!=''&&this.password!=''&&this.inputCode!=''){
         let that =this
         this.$http.post({
               url:"/frontUser/register",
@@ -153,8 +155,17 @@ export default {
                  wx.navigateTo({
                    url:'../login/main'
                   })
+                  that.phone="",
+                  that.password='',
+                  that.inputCode='',
+                  that.repassword=''
                },2000)
               } else if(res.code == 500){
+                wx.showToast({
+                  title: res.msg,
+                  icon:'none',
+                });
+              }else if(res.code == 403){
                 wx.showToast({
                   title: res.msg,
                   icon:'none',
@@ -168,6 +179,12 @@ export default {
               });
             }
           });
+        }else{
+          wx.showToast({
+            title:'请完善信息！',
+            icon:'none'
+          })
+        }
       }
   },
   mounted() {

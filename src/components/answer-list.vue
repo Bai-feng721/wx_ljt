@@ -1,45 +1,50 @@
 <template>
   <div class="cell" >
-    <div class="top">
-      <div class="newimg">
-        <img src="../../static/images/user.jpg" alt="">
+    <div class="top_1">
+      <div class="top1">
+        <div class="newimg">
+          <img src="../../static/images/user.jpg" alt="">
+        </div>
+        <div class="mess">
+          <h1 class="content">{{name}}</h1>
+          <p>{{newtime}}</p>
+        </div>
       </div>
-      <div class="mess">
-        <h1 class="content">13112345678</h1>
-        <p>2020-7-6</p>
-      </div>
-    </div>
-    <div class="buttom">
-      <h1>果树长虫子怎么办</h1>
-      <div class="main">
-        <img src="../../static/images/pic_sp.png" alt="">
-        <img src="../../static/images/pic_sp.png" alt="">
-        <img src="../../static/images/pic_sp.png" alt="">
-      </div>
-      <div class="mess1">
-        <img src="../../static/images/mess.png" alt="">
-        <p>0</p>
+      <div class="buttom">
+        <h1>{{content}}</h1>
+        <div class="main" v-if="imgurl[0]!=''">
+          <img :src="imgurl1" alt="">
+          <!-- <img :src="imgurl2" alt="">
+          <img :src="imgurl3" alt=""> -->
+        </div>
+        <div class="mess1">
+          <img src="../../static/images/mess.png" alt="">
+          <p>1</p>
+        </div>
       </div>
     </div>
    <!-- 回复开始 -->
-    <div class="reply">
-      <div class="reply_top">
-        <p></p>
-        <h1>回复</h1>
-      </div>
-      <div class="top">
-        <div class="newimg">
-          <img src="../../static/images/zhuanjia.jpg" alt="">
+    <div class="top_1">
+      <div class="reply">
+        <div class="reply_top">
+          <p></p>
+          <h1>回复</h1>
         </div>
-        <div class="mess">
-          <h1 class="content">18812365431</h1>
-          <p>2020-7-6</p>
+        <div class="top">
+          <div class="newimg">
+            <img src="../../static/images/zhuanjia.jpg" alt="">
+          </div>
+          <div class="mess">
+            <h1 class="content">{{exportname}}</h1>
+            <p>{{replaytime}}</p>
+          </div>
         </div>
-      </div>
-      <div class="content">
-        <h1>在环境植物病虫害防治中，果树病虫害防治的任务更重，因为不仅要对病虫有好的防治效果，同时还要符合环境的要求。这些，在防治方法上和药剂的选择上就要有对传统的突破，就要更新观念，甚至在果树品种的选择和发展上都要有新的要求。本书的编写是一个新的尝试。</h1>
+        <div class="content">
+          <h1>{{exportcont}}</h1>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -50,11 +55,27 @@
       data:{
 
       },
+      name:{
+        type:String,
+        default:null
+      },
       imgurl:{
         type:String,
         default:null
       },
-      newtitle:{
+      imgurl1:{
+        type:String,
+        default:null
+      },
+      imgurl2:{
+        type:String,
+        default:null
+      },
+      imgurl3:{
+        type:String,
+        default:null
+      },
+      content:{
         type:String,
         default:null
       },
@@ -74,8 +95,26 @@
         type: Number,
         default: null
       },
+      replaycount: {
+        type: Number,
+        default: null
+      },
+      exportname: {
+        type: Number,
+        default: null
+      },
+      replaytime: {
+        type: Number,
+        default: null
+      },
+      exportcont: {
+        type: Number,
+        default: null
+      },
     },
-    mounted(){},
+    mounted(){
+
+    },
    methods: {
      getDetail() {
        let id = this.id
@@ -90,15 +129,25 @@
 <style scoped>
   .cell{
     /* height: 360rpx; */
-    padding: 0 40rpx;
+    /* padding: 0 40rpx; */
+  }
+  .top_1{
     border-bottom: 6px solid #f5f5f5;
   }
   .top{
-    width: 300rpx;
+    width: 240rpx;
     height: 120rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .top1{
+    width:300rpx;
+    height: 120rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40rpx;
   }
   .newimg{
     width: 70rpx;
@@ -117,14 +166,14 @@
     width: 100%;
     margin: 20rpx 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .main img{
-    width: 210rpx;
-    height: 150rpx;
+    width: 94%;
   }
   .reply{
     margin: 10rpx 0;
+    padding: 0 40rpx;
   }
   .reply_top{
     display: flex;
@@ -138,10 +187,15 @@
   .reply_top h1{
     font-size: 32rpx;
     margin-left: 15rpx;
+    font-weight: 300;
+  }
+  .buttom{
+    padding: 0 40rpx;
   }
   .buttom h1{
-    height:44rpx ;
+    /* height:44rpx ; */
     font-size: 30rpx;
+    margin: 20rpx 0;
   }
   .mess1{
     display: flex;

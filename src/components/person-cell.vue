@@ -1,5 +1,5 @@
 <template>
-  <div class="cell"  @click="getDetail">
+  <div class="cell" @click="getDetail">
     <div class="top">
       <div class="newimg">
         <img src="../../static/images/user.jpg" alt="">
@@ -21,27 +21,26 @@
 </template>
 
 <script>
-  export default{
-    name:'NewCell',
-    props:{
-      data:{
+  export default {
+    props: {
+      data: {
 
       },
-      count:{
-        type:String,
-        default:null
+      count: {
+        type: String,
+        default: null
       },
-      name:{
-        type:String,
-        default:null
+      name: {
+        type: String,
+        default: null
       },
-      title:{
-        type:String,
-        default:null
+      title: {
+        type: String,
+        default: null
       },
-      newtime:{
-        type:String,
-        default:null
+      newtime: {
+        type: String,
+        default: null
       },
       createdBy: {
         type: String,
@@ -52,65 +51,76 @@
         default: null
       },
     },
-    mounted(){},
-   methods: {
-     getDetail() {
-       mpvue.navigateTo({
-         url: '../answerDetail/main?id='+this.id
-       })
-     }
-   }
+    mounted() {},
+    methods: {
+      getDetail() {
+        mpvue.navigateTo({
+          url: '../answerDetail/main?id=' + this.id
+        })
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .cell{
-    height: 200rpx;
+  .cell {
+    /* height: 200rpx; */
     padding: 0 40rpx;
     border-bottom: 6px solid #f5f5f5;
   }
-  .top{
+
+  .top {
     width: 300rpx;
     height: 120rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .newimg{
+
+  .newimg {
     width: 70rpx;
     height: 70rpx;
     border-radius: 50%;
   }
-  .newimg img{
+
+  .newimg img {
     width: 70rpx;
     height: 70rpx;
     border-radius: 50%;
   }
-  .content{
+
+  .content {
     font-size: 30rpx;
   }
-  .buttom h1{
-    height:44rpx ;
+
+  .buttom h1 {
+    /* height: 44rpx; */
     font-size: 30rpx;
-    white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        word-break: break-all;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
-  .mess1{
+
+  .mess1 {
     display: flex;
     align-items: center;
   }
-  .mess1 img{
+
+  .mess1 img {
     width: 24rpx;
     height: 24rpx;
     margin-right: 20rpx;
   }
-  .mess p{
-    color: #999999
-  }
-  .mess1 p{
+
+  .mess p {
     color: #999999
   }
 
+  .mess1 p {
+    color: #999999
+  }
 </style>

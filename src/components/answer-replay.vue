@@ -1,5 +1,5 @@
 <template>
-  <div class="cell" >
+  <div class="cell">
     <div class="top">
       <div class="newimg">
         <img src="../../static/images/user.jpg" alt="">
@@ -11,10 +11,10 @@
     </div>
     <div class="buttom">
       <h1>{{content}}</h1>
-      <div class="main">
-        <img :src="imgurl1" alt="">
-        <img :src="imgurl2" alt="">
-        <img :src="imgurl3" alt="">
+      <div class="main" v-if="isImg">
+        <img :src="imgurl1" alt="" >
+        <!-- <img :src="imgurl2" alt="" >
+        <img :src="imgurl3" alt="" > -->
       </div>
       <div class="mess1">
         <img src="../../static/images/mess.png" alt="">
@@ -26,34 +26,34 @@
 </template>
 
 <script>
-  export default{
-    props:{
-      data:{
+  export default {
+    props: {
+      data(){
 
       },
-      imgurl1:{
-        type:String,
-        default:null
+      imgurl1: {
+        type: String,
+        default: null
       },
-      imgurl2:{
-        type:String,
-        default:null
+      imgurl2: {
+        type: String,
+        default: null
       },
-      imgurl3:{
-        type:String,
-        default:null
+      imgurl3: {
+        type: String,
+        default: null
       },
-      newtitle:{
-        type:String,
-        default:null
+      newtitle: {
+        type: String,
+        default: null
       },
-      name:{
-        type:String,
-        default:null
+      name: {
+        type: String,
+        default: null
       },
-      newtime:{
-        type:String,
-        default:null
+      newtime: {
+        type: String,
+        default: null
       },
       content: {
         type: String,
@@ -67,94 +67,116 @@
         type: Number,
         default: null
       },
+      isImg: {
+        type: String,
+        default: null
+      },
+      preview: {
+        type: Array,
+        default: () => []
+      },
     },
-    mounted(){
-      console.log(this.imgurl1)
-      console.log(this.imgurl2)
-      console.log(this.imgurl3)
+    mounted() {},
 
-    },
-   methods: {
-     getDetail() {
-       let id = this.id
-       mpvue.navigateTo({
-         url: ''
-       })
-     }
-   }
+    methods: {
+      // previewimg(e) {
+      //   wx.previewImage({
+      //     current: this.preview[0], // 当前显示图片的http链接
+      //     urls: this.preview // 需要预览的图片http链接列表
+      //   })
+      // },
+      getDetail() {
+        let id = this.id
+        mpvue.navigateTo({
+          url: ''
+        })
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .cell{
+  .cell {
     /* height: 360rpx; */
     padding: 0 40rpx;
     border-bottom: 6px solid #f5f5f5;
   }
-  .top{
+
+  .top {
     width: 300rpx;
     height: 120rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .newimg{
+
+  .newimg {
     width: 70rpx;
     height: 70rpx;
     border-radius: 50%;
   }
-  .newimg img{
+
+  .newimg img {
     width: 70rpx;
     height: 70rpx;
     border-radius: 50%;
   }
-  .content{
+
+  .content {
     font-size: 30rpx;
   }
-  .main{
+
+  .main {
     width: 100%;
     margin: 20rpx 0;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
   }
-  .main img{
-    width: 210rpx;
-    height: 150rpx;
+  .main img {
+    width: 94%;
   }
-  .reply{
+
+  .reply {
     margin: 10rpx 0;
   }
-  .reply_top{
+
+  .reply_top {
     display: flex;
     align-items: center;
   }
-  .reply_top p{
+
+  .reply_top p {
     width: 10rpx;
     height: 30rpx;
     background-color: #00923f;
   }
-  .reply_top h1{
+
+  .reply_top h1 {
     font-size: 32rpx;
     margin-left: 15rpx;
   }
-  .buttom h1{
+
+  .buttom h1 {
     /* height:44rpx ; */
     font-size: 30rpx;
   }
-  .mess1{
+
+  .mess1 {
     display: flex;
     align-items: center;
   }
-  .mess1 img{
+
+  .mess1 img {
     width: 24rpx;
     height: 24rpx;
     margin-right: 20rpx;
   }
-  .mess p{
-    color: #999999
-  }
-  .mess1 p{
+
+  .mess p {
     color: #999999
   }
 
+  .mess1 p {
+    color: #999999
+  }
 </style>

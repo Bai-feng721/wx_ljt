@@ -2,7 +2,7 @@
   <div class="cell" >
     <div class="top">
       <img class="newimg" :src="imgurl"></img>
-      <div class="mess">
+      <div class="mess" @click="goExport">
         <div class="mess1">
           <h1>{{name}}</h1>
           <p>{{post}}</p>
@@ -17,7 +17,6 @@
       </div>
       <div class="btn"  @click="getDetail">
        提问
-
       </div>
     </div>
 
@@ -58,6 +57,11 @@
     },
     mounted(){},
    methods: {
+     goExport(){
+       wx.navigateTo({
+         url: '../exportDetail/main?id='+this.id
+       })
+     },
      getDetail() {
        let that = this
        if (wx.getStorageSync('token')) {
@@ -75,7 +79,6 @@
             })
          },2000)
        }
-
      }
    }
   }
@@ -102,6 +105,7 @@
   }
   .mess{
     height: 140rpx;
+		width: 68%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

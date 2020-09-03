@@ -74,8 +74,8 @@ export default {
       this.$http.post({
         url:'/frontUser/updatePwd',
         data:{
-          pwd:this.password,
-          oldPwd:this.newpassword
+          pwd:this.newpassword,
+          oldPwd:this.password
         }
       }).then(
         res=>{
@@ -85,7 +85,7 @@ export default {
             icon:"none"
           })
           setTimeout(function() {
-            mpvue.navigateTo({
+            mpvue.switchTab({
               url:'../my/main'
             })
           }, 2000);

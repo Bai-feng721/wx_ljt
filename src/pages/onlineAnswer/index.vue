@@ -144,9 +144,7 @@ export default {
           that.fileName1 = data.enclosure_path
           let url = process.env.VUE_IMAGES+that.fileName1
           that.filelist.push({"url":url})
-
           that.zmimg= process.env.VUE_IMAGES+that.fileName1
-
         },
       });
     },
@@ -174,7 +172,6 @@ export default {
                 return item.url
               }),
               "link_name":this.name,
-              "expert_id":this.id,
               "link_phone":this.phone,
             }
 
@@ -188,6 +185,7 @@ export default {
                   wx.switchTab({
                     url:'../answer/main'
                   })
+                  //清空表单
                   this.type='',
                   this.name='',
                   this.phone='',
@@ -219,6 +217,7 @@ export default {
   .crad{
     width: 500rpx;
     margin:20rpx 40rpx;
+
   }
   .zm_crad{
     width: 330rpx;
@@ -247,6 +246,4 @@ export default {
     font-size:34rpx;
     margin:80rpx 0rpx 10rpx
   }
-
-
 </style>

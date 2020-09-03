@@ -5,11 +5,11 @@
       <img :src="imgurl" alt="">
     </div>
     <div class="newtitle">
-      <h1 class="content">{{newtitle}}</h1>
+      <p class="content">{{newtitle}}</p>
       <div class="mess">
         <p>{{newtime}}</p>
         <p>{{read}}次阅读</p>
-        <p>类别</p>
+        <p>{{className}}</p>
       </div>
 
     </div>
@@ -47,14 +47,30 @@
         type: Number,
         default: null
       },
+      className: {
+        type: Number,
+        default: null
+      },
+      isvideo: {
+        type: Number,
+        default: null
+      },
     },
     mounted(){},
    methods: {
      getDetail() {
-       let id = this.id
-       mpvue.navigateTo({
-         url: '../detail/main?id='+id
-       })
+        let id = this.id
+       //isvideo==0文档isvideo==1视频
+       if(this.isvideo==0){
+
+         mpvue.navigateTo({
+           url: '../detail/main?id='+id
+         })
+       }else{
+         mpvue.navigateTo({
+           url: '../videoDetail/main?id='+id
+         })
+       }
      }
    }
   }
@@ -81,17 +97,12 @@
     justify-content: space-around;
     margin-left: 20rpx;
   }
-  .newtitle h1{
-    font-size: 30rpx;
-    font-weight: 600;
-  }
   .mess{
     display: flex;
     justify-content: space-between;
   }
   .mess p{
     font-size: 24rpx;
-    color: #676767;
   }
 
   .content{
@@ -100,6 +111,7 @@
     display:-webkit-box;
     -webkit-line-clamp:2;
     -webkit-box-orient:vertical;
-    font-size: 26rpx;
+    font-size: 30rpx;
+    color: #000000;
   }
 </style>

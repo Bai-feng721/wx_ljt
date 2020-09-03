@@ -1,7 +1,7 @@
 <template>
   <div class="cell" @click="goDetail">
     <div class="newtitle">
-      <h1>{{newtitle}}</h1>
+      <p class="ptitle">{{newtitle}}</p>
       <div class="mess">
        <p>{{time}}</p>
        <p>{{read}}次阅读</p>
@@ -96,9 +96,8 @@
     margin: 0 40rpx 0 20rpx;
   }
 
-  .newtitle h1 {
+  .ptitle {
     font-size: 30rpx;
-    font-weight: 600;
   }
 
   .mess {
